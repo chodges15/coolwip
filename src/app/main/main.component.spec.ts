@@ -7,6 +7,7 @@ import {
   MatGridListModule,
   MatIconModule,
   MatMenuModule,
+  MatToolbar
 } from '@angular/material';
 
 import { MainComponent } from './main.component';
@@ -26,6 +27,7 @@ describe('MainComponent', () => {
         MatGridListModule,
         MatIconModule,
         MatMenuModule,
+        MatToolbar
       ]
     }).compileComponents();
   }));
