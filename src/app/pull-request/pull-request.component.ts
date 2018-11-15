@@ -6,7 +6,6 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./pull-request.component.css']
 })
 export class PullRequestComponent implements OnInit {
-
   constructor() { }
 
   ngOnInit() {
