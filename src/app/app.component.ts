@@ -6,5 +6,5 @@ import { Component, NgModule } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'lean-team-flow-dashboard';
+  title = 'DevSwing';
 }
