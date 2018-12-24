@@ -1,11 +1,13 @@
 import { TestBed, async } from '@angular/core/testing';
 import { AppComponent } from './app.component';
+import { Component } from '@angular/core';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [
-        AppComponent
+        AppComponent,
+        MainComponent
       ],
     }).compileComponents();
   }));
@@ -16,16 +18,18 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'lean-team-flow-dashboard'`, () => {
+  it(`should have as title 'Lean Agile Flow Dashboard'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.debugElement.componentInstance;
-    expect(app.title).toEqual('lean-team-flow-dashboard');
-  });
-
-  it('should render title in a h1 tag', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('h1').textContent).toContain('Welcome to lean-team-flow-dashboard!');
+    expect(app.title).toEqual('Lean Agile Flow Dashboard');
   });
 });
+
+// Mocks
+@Component({
+  selector: 'app-main',
+  template: ''
+})
+class MainComponent {
+}
+

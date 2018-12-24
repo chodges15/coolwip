@@ -8,7 +8,8 @@ describe('PullRequestComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ PullRequestComponent ]
+      declarations: [ PullRequestComponent ],
+      providers:  [{provide: String, useValue: "dummy"}]
     })
     .compileComponents();
   }));

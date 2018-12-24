@@ -1,4 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {MatTableModule} from '@angular/material/table';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 import { PullRequestTableComponent } from './pull-request-table.component';
 
@@ -8,7 +10,9 @@ describe('PullRequestTableComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ PullRequestTableComponent ]
+      declarations: [ PullRequestTableComponent ],
+      imports: [MatTableModule,
+                BrowserAnimationsModule]
     })
     .compileComponents();
   }));

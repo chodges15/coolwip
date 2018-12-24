@@ -1,6 +1,9 @@
 import { LayoutModule } from '@angular/cdk/layout';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { Component } from '@angular/core';
+
 import {
   MatButtonModule,
   MatCardModule,
@@ -18,7 +21,8 @@ describe('MainComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [MainComponent],
+      declarations: [MainComponent, 
+                     PullRequestTable],
       imports: [
         NoopAnimationsModule,
         LayoutModule,
@@ -27,7 +31,7 @@ describe('MainComponent', () => {
         MatGridListModule,
         MatIconModule,
         MatMenuModule,
-        MatToolbar
+        MatToolbarModule
       ]
     }).compileComponents();
   }));
@@ -42,3 +46,11 @@ describe('MainComponent', () => {
     expect(component).toBeTruthy();
   });
 });
+
+
+@Component({
+  selector: 'app-pull-request-table',
+  template: ''
+})
+class PullRequestTable {
+}
