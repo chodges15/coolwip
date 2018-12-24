@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
-import { map } from 'rxjs/operators';
-import { Breakpoints, BreakpointObserver } from '@angular/cdk/layout';
+import { PullRequestTableComponent } from '../pull-request-table/pull-request-table.component';
 
 @Component({
   selector: 'app-main',
@@ -8,26 +7,6 @@ import { Breakpoints, BreakpointObserver } from '@angular/cdk/layout';
   styleUrls: ['./main.component.css'],
 })
 export class MainComponent {
-  /** Based on the screen size, switch from standard to one column per row */
-  cards = this.breakpointObserver.observe(Breakpoints.Handset).pipe(
-    map(({ matches }) => {
-      if (matches) {
-        return [
-          { title: 'Open', cols: 1, rows: 1 },
-          { title: 'Done', cols: 1, rows: 1 },
-          { title: 'Defects', cols: 1, rows: 1 },
-          { title: 'Work in Progress', cols: 1, rows: 1 }
-        ];
-      }
-
-      return [
-        { title: 'Open', cols: 2, rows: 1 },
-        { title: 'Done', cols: 1, rows: 1 },
-        { title: 'Defects', cols: 1, rows: 2 },
-        { title: 'Work in Progress', cols: 1, rows: 1 }
-      ];
-    })
-  );
-
-  constructor(private breakpointObserver: BreakpointObserver) {}
+  openPrTable: PullRequestTableComponent;  
+  constructor() { this.openPrTable = new PullRequestTableComponent()}
 }

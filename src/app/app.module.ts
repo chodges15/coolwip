@@ -7,12 +7,15 @@ import { MainComponent } from './main/main.component';
 import { MatGridListModule, MatCardModule, MatMenuModule, MatIconModule, MatButtonModule, MatToolbarModule } from '@angular/material';
 import { LayoutModule } from '@angular/cdk/layout';
 import { PullRequestComponent } from './pull-request/pull-request.component';
+import { PullRequestTableComponent } from './pull-request-table/pull-request-table.component';
+import { MatTableModule } from '@angular/material/table';
 
 @NgModule({
   declarations: [
     AppComponent,
     MainComponent,
-    PullRequestComponent
+    PullRequestComponent,
+    PullRequestTableComponent
   ],
   imports: [
     BrowserModule,
@@ -24,6 +27,7 @@ import { PullRequestComponent } from './pull-request/pull-request.component';
     MatButtonModule,
     MatToolbarModule,
     LayoutModule,
+    MatTableModule
   ],
   providers: [],
   bootstrap: [AppComponent]
