@@ -16,12 +16,11 @@ jobs:
 
     working_directory: ~/repo
 
-    dependencies:
-      pre:
-        - npm install angular-cli@latest -g
 
     steps:
       - checkout
+
+      - install_ng_cli: npm install angular-cli@latest -g
 
       # Download and cache dependencies
       - restore_cache:
@@ -39,3 +38,5 @@ jobs:
         
       # run tests!
       - run: ng test --watch=false --code-coverage
+          requires:
+                - install_ng_cli
