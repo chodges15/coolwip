@@ -3,7 +3,7 @@ import { GithubService } from '../github.service';
 import { PullRequest } from '../pull-request';
 import { PullRequestComponent } from './pull-request.component';
 import { Observable, of } from 'rxjs';
-import { MOCK_PULL_REQUESTS } from "../mock-pull-requests";
+import { MOCK_PULL_REQUESTS } from '../mock-pull-requests';
 
 // Mocks
 class MockGithubService {

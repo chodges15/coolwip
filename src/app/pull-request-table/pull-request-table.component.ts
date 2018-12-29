@@ -15,7 +15,7 @@ import { PullRequest } from '../pull-request';
   ]
 })
 export class PullRequestTableComponent implements OnInit {
-  dataSource = ["temp"];
+  dataSource = ['temp'];
   columnsToDisplay = ['pull request', 'state', 'organization', 'name'];
   expandedElement: PullRequest | null;
 

@@ -8,7 +8,7 @@ import { PullRequestTableComponent } from '../pull-request-table/pull-request-ta
 })
 export class MainComponent {
   openPrTable: PullRequestTableComponent;
-  constructor() { 
+  constructor() {
     this.openPrTable = new PullRequestTableComponent();
   }
 }

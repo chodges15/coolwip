@@ -15,7 +15,7 @@ import {
 
 import { MainComponent } from './main.component';
 
-//Mocks
+// Mocks
 @Component({
   selector: 'app-pull-request-table',
   template: ''
