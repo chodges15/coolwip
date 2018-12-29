@@ -4,10 +4,10 @@ export enum PullRequestState {
 }
 
 export class PullRequest {
-    name: string;
-    id: number;
-    author: string;
-    state: PullRequestState;
-    repository: string;
-    organization: string;
+    public name: string;
+    public id: number;
+    public author: string;
+    public state: PullRequestState;
+    public repository: string;
+    public organization: string;
 }

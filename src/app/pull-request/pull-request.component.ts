@@ -17,18 +17,17 @@ export class PullRequestComponent implements OnInit {
                             organization: 'org'};
   pullRequests: PullRequest[];
 
-  getPullRequests()
+  getPullRequests(organization: String, users: String[])
   {
-    this.users.forEach(user => {
-      this.githubService.getPullRequests(this.organization, user)
+    users.forEach(user => {
+      this.githubService.getPullRequests(organization, user)
     }); 
   }
 
-  constructor(private githubService: GithubService, public organization: String, public users: String[]) {
+  constructor(private githubService: GithubService) {
   }
 
   ngOnInit() {
-    this.getPullRequests();
   }
 
 }
