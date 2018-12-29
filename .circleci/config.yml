@@ -27,7 +27,10 @@ jobs:
           prefix: tests
       - run:
           name: angular-lint
-          command: yarn lint --format junit | sed '2d' > tslint-output.xml
+          command: yarn lint --format junit > tslint-output.xml
+      - run:
+          name: cleanup-yucky-lint-output
+          command: sed -n '3p' tslint-output.xml > tslint-output-junit.xml
       - store_artifacts:
           path: tslint-output.xml
           prefix: lint`
