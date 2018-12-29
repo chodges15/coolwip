@@ -32,5 +32,5 @@ jobs:
           name: cleanup-yucky-lint-output
           command: sed -n '3p' tslint-output.xml > tslint-output-junit.xml
       - store_artifacts:
-          path: tslint-output.xml
+          path: tslint-output-junit.xml
           prefix: lint`
