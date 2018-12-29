@@ -7,6 +7,8 @@ import { PullRequestTableComponent } from '../pull-request-table/pull-request-ta
   styleUrls: ['./main.component.css'],
 })
 export class MainComponent {
-  openPrTable: PullRequestTableComponent;  
-  constructor() { this.openPrTable = new PullRequestTableComponent()}
+  openPrTable: PullRequestTableComponent;
+  constructor() { 
+    this.openPrTable = new PullRequestTableComponent();
+  }
 }

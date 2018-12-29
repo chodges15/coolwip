@@ -2,6 +2,14 @@ import { TestBed, async } from '@angular/core/testing';
 import { AppComponent } from './app.component';
 import { Component } from '@angular/core';
 
+// Mocks
+@Component({
+  selector: 'app-main',
+  template: ''
+})
+class MainComponent {
+}
+
 describe('AppComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -24,12 +32,4 @@ describe('AppComponent', () => {
     expect(app.title).toEqual('Lean Agile Flow Dashboard');
   });
 });
-
-// Mocks
-@Component({
-  selector: 'app-main',
-  template: ''
-})
-class MainComponent {
-}
 

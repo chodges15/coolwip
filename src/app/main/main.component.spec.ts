@@ -15,14 +15,22 @@ import {
 
 import { MainComponent } from './main.component';
 
+//Mocks
+@Component({
+  selector: 'app-pull-request-table',
+  template: ''
+})
+class PullRequestTableComponent {
+}
+
 describe('MainComponent', () => {
   let component: MainComponent;
   let fixture: ComponentFixture<MainComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [MainComponent, 
-                     PullRequestTable],
+      declarations: [MainComponent,
+                     PullRequestTableComponent],
       imports: [
         NoopAnimationsModule,
         LayoutModule,
@@ -48,9 +56,3 @@ describe('MainComponent', () => {
 });
 
 
-@Component({
-  selector: 'app-pull-request-table',
-  template: ''
-})
-class PullRequestTable {
-}

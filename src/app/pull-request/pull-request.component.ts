@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PullRequest, PullRequestState } from '../pull-request';
-import { GithubService } from '../github.service'
+import { GithubService } from '../github.service';
 
 @Component({
   selector: 'app-pull-request',
@@ -17,11 +17,10 @@ export class PullRequestComponent implements OnInit {
                             organization: 'org'};
   pullRequests: PullRequest[];
 
-  getPullRequests(organization: String, users: String[])
-  {
+  getPullRequests(organization: String, users: String[]) {
     users.forEach(user => {
-      this.githubService.getPullRequests(organization, user)
-    }); 
+      this.githubService.getPullRequests(organization, user);
+    });
   }
 
   constructor(private githubService: GithubService) {

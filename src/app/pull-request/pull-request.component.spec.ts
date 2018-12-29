@@ -3,7 +3,15 @@ import { GithubService } from '../github.service';
 import { PullRequest } from '../pull-request';
 import { PullRequestComponent } from './pull-request.component';
 import { Observable, of } from 'rxjs';
-import { MOCK_PULL_REQUESTS } from "../mock-pull-requests"
+import { MOCK_PULL_REQUESTS } from "../mock-pull-requests";
+
+// Mocks
+class MockGithubService {
+  getPullRequests(organization: String, users: String): Observable<PullRequest[]> {
+    console.log('Fetching pull requests');
+    return of(MOCK_PULL_REQUESTS);
+  }
+}
 
 describe('PullRequestComponent', () => {
   let component: PullRequestComponent;
@@ -14,8 +22,8 @@ describe('PullRequestComponent', () => {
     TestBed.configureTestingModule({
       declarations: [ PullRequestComponent ],
       providers:  [ {provide: GithubService, useClass: MockGithubService },
-                    {provide: String, useValue: "dummy"},
-                    {provide: Array, useValue: ["user1", "user2"]}]
+                    {provide: String, useValue: 'dummy'},
+                    {provide: Array, useValue: ['user1', 'user2']}]
     })
     .compileComponents();
   }));
@@ -23,7 +31,7 @@ describe('PullRequestComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(PullRequestComponent);
     component = fixture.componentInstance;
-    serviceFixture = TestBed.get(GithubService)
+    serviceFixture = TestBed.get(GithubService);
     fixture.detectChanges();
   });
 
@@ -32,9 +40,3 @@ describe('PullRequestComponent', () => {
   });
 });
 
-class MockGithubService {
-  getPullRequests(organization: String, users: String): Observable<PullRequest[]> {
-    console.log("Fetching pull requests")
-    return of(MOCK_PULL_REQUESTS);
-  }
-};
