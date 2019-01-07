@@ -5,7 +5,10 @@
     "types": [
       "jasmine",
       "node"
-    ]
+    ],
+    "allowSyntheticDefaultImports": true,
+    "resolveJsonModule": true,
+    "esModuleInterop": true
   },
   "files": [
     "test.ts",
@@ -14,5 +17,5 @@
   "include": [
     "**/*.spec.ts",
     "**/*.d.ts"
-  ]
+  ],
 }
