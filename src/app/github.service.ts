@@ -17,7 +17,7 @@ export class GithubService {
     this.octokit.authenticate(authParams);
   }
 
-  getTeamPullRequests(organization: string, teamName: string): Observable<Octokit.Response<IssueSearchResult>> {
+  public getTeamPullRequests(organization: string, teamName: string): Observable<Octokit.Response<IssueSearchResult>> {
     const query = `{ queryBasePr }+team:{ organization }/{ teamName }`;
     const searchIssues: Octokit.SearchIssuesParams = { q: query };
     return from(this.octokit.search.issues(searchIssues));

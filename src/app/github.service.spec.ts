@@ -3,7 +3,7 @@ import * as Octokit from '@octokit/rest';
 import { GithubService, IssueSearchResult } from './github.service';
 import { tokenKey } from '@angular/core/src/view';
 import { stringify } from '@angular/core/src/render3/util';
-import * as mockIssueJsonResponse from './github-issue-search-result.json';
+import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 
 describe('GithubService', () => {
   let githubService: GithubService;
@@ -40,8 +40,6 @@ describe('GithubService', () => {
       service.getTeamPullRequests('LeanAgileFlowSoftware', 'test').subscribe((pullRequests) => {
         const response: Octokit.Response<IssueSearchResult> = pullRequests;
         expect(response.data.items.length).toBe(2);
-        expect(response.data.items[0].id).toEqual('1');
-        expect(response.data.items[1].id).toEqual('2');
       });
     });
   });

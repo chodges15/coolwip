@@ -17,9 +17,9 @@ export class PullRequestComponent implements OnInit {
                             organization: 'org'};
   pullRequests: PullRequest[];
 
-  getPullRequests(organization: String, users: String[]) {
+  getPullRequests(organization: string, users: string[]) {
     users.forEach(user => {
-      this.githubService.getPullRequests(organization, user);
+      this.githubService.getTeamPullRequests(organization, user);
     });
   }
 
