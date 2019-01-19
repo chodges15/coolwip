@@ -9,6 +9,7 @@ import { LayoutModule } from '@angular/cdk/layout';
 import { PullRequestComponent } from './pull-request/pull-request.component';
 import { PullRequestTableComponent } from './pull-request-table/pull-request-table.component';
 import { MatTableModule } from '@angular/material/table';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { MatTableModule } from '@angular/material/table';
     MatButtonModule,
     MatToolbarModule,
     LayoutModule,
-    MatTableModule
+    MatTableModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

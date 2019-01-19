@@ -1,26 +1,31 @@
-import { Injectable, Inject } from '@angular/core';
+import { Injectable, Inject, OnInit } from '@angular/core';
 import { PullRequest } from './pull-request';
 import { MOCK_PULL_REQUESTS } from './mock-github-service-data';
 import { Observable, of, from } from 'rxjs';
-import * as Octokit from '@octokit/rest';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
-export class GithubService {
+
+@Injectable()
+export class GithubService implements OnInit {
 
 
   readonly queryBasePr: string = `type:pr`;
-  constructor(@Inject('octokit') public octokit: Octokit, @Inject('githubToken') public githubToken: string) {
-    console.log(octokit);
-    const authParams: Octokit.AuthUserToken = { type: 'token', token: githubToken };
-    this.octokit.authenticate(authParams);
+  constructor(private http: HttpClient) {
   }
 
-  public getTeamPullRequests(organization: string, teamName: string): Observable<Octokit.Response<IssueSearchResult>> {
-    const query = `{ queryBasePr }+team:{ organization }/{ teamName }`;
-    const searchIssues: Octokit.SearchIssuesParams = { q: query };
-    return from(this.octokit.search.issues(searchIssues));
+  ngOnInit() {
+    this.authenticate();
+  }
+
+  public authenticate(): Boolean {
+    return true;
+  }
+
+  public getTeamPullRequests(organization: string, teamName: string): Observable<IssueSearchResult> {
+    return Observable.prototype;
   }
 }
 
