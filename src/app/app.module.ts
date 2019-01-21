@@ -9,7 +9,9 @@ import { LayoutModule } from '@angular/cdk/layout';
 import { PullRequestComponent } from './pull-request/pull-request.component';
 import { PullRequestTableComponent } from './pull-request-table/pull-request-table.component';
 import { MatTableModule } from '@angular/material/table';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { TokenInterceptor } from './http-interceptors/token-interceptor';
+import { Token } from '../../node_modules/@angular/compiler';
 
 @NgModule({
   declarations: [
@@ -31,7 +33,9 @@ import { HttpClientModule } from '@angular/common/http';
     MatTableModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
