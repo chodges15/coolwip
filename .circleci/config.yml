@@ -27,6 +27,8 @@ jobs:
           prefix: tests
       - store_artifacts:
           path: ./coverage
+      - store_test_results:
+          path: ./coverage
       - run:
           name: angular-lint
           command: yarn lint --format junit | sed -n '3p' > tslint-output-junit.xml
