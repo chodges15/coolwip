@@ -11,6 +11,7 @@ import { PullRequestTableComponent } from './pull-request-table/pull-request-tab
 import { MatTableModule } from '@angular/material/table';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenInterceptor } from './http-interceptors/token-interceptor';
+import { BaseUrlInterceptor } from './http-interceptors/base-url-interceptor';
 import { Token } from '../../node_modules/@angular/compiler';
 
 @NgModule({
@@ -35,6 +36,7 @@ import { Token } from '../../node_modules/@angular/compiler';
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: BaseUrlInterceptor, multi: true },
   ],
   bootstrap: [AppComponent]
 })
