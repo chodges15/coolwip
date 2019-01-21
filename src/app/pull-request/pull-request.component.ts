@@ -9,7 +9,7 @@ import * as Interfaces from '../interfaces';
 })
 export class PullRequestComponent implements OnInit {
 
-  issue: Interfaces.Issue[];
+  issue: Interfaces.Issue;
 
   getPullRequests(users: string[]) {
     users.forEach(user => {
