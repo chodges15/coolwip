@@ -12,7 +12,6 @@ import { MatTableModule } from '@angular/material/table';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenInterceptor } from './http-interceptors/token-interceptor';
 import { BaseUrlInterceptor } from './http-interceptors/base-url-interceptor';
-import { Token } from '../../node_modules/@angular/compiler';
 
 @NgModule({
   declarations: [

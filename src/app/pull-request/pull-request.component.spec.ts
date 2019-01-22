@@ -7,13 +7,13 @@ import * as Interfaces from '../interfaces';
 
 // Mocks
 class MockGithubService {
-  getPullRequests(organization: String, users: String): Observable<Interfaces.PullRequest[]> {
+  getPullRequests(user: String): Observable<Interfaces.PullRequest[]> {
     console.log('Fetching pull requests');
     return of(MockData.ISSUE_SEARCH.items[0].pull_request[0]);
   }
 }
 
-xdescribe('PullRequestComponent', () => {
+describe('PullRequestComponent', () => {
   let component: PullRequestComponent;
   let fixture: ComponentFixture<PullRequestComponent>;
   let serviceFixture: GithubService;
@@ -30,6 +30,7 @@ xdescribe('PullRequestComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(PullRequestComponent);
     component = fixture.componentInstance;
+    component.users = ['user1', 'user2'];
     serviceFixture = TestBed.get(GithubService);
     fixture.detectChanges();
   });

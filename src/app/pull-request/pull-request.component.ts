@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { GithubService } from '../github.service';
 import * as Interfaces from '../interfaces';
 
@@ -9,18 +9,26 @@ import * as Interfaces from '../interfaces';
 })
 export class PullRequestComponent implements OnInit {
 
-  issue: Interfaces.Issue;
+  issues: Interfaces.Issue[];
+  currentSelectedIssue: Interfaces.Issue;
+  theMap: Map<number, Interfaces.Issue>;
+  @Input() users: string[];
 
-  getPullRequests(users: string[]) {
-    users.forEach(user => {
-      this.githubService.getPullRequests(user);
+  parseResults(results: Interfaces.IssueSearchResult) {
+  }
+
+  sendPullRequestGet() {
+    this.users.forEach(user => {
+      this.githubService.getPullRequests(user).subscribe(results => this.parseResults(results));
     });
   }
 
   constructor(private githubService: GithubService) {
+    this.theMap = new Map<number, Interfaces.Issue>();
   }
 
   ngOnInit() {
+    this.sendPullRequestGet();
   }
 
 }
