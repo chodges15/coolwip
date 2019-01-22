@@ -1,5 +1,11 @@
 .grid-container {
-  margin: 20px;
+  margin: 0px;
+}
+
+.mat-toolbar {
+  background: black;
+  color: white;
+  font-family: 'Source Sans Pro', sans-serif;
 }
 
 .dashboard-card {
