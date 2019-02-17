@@ -6,12 +6,14 @@ import { HttpClientTestingModule, HttpTestingController } from '@angular/common/
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import * as Interfaces from './interfaces';
 
+
 describe('GithubService', () => {
   let githubService: GithubService;
   let httpClient: HttpClient;
   let httpTestingController: HttpTestingController;
 
   beforeEach(() => {
+
 
     TestBed.configureTestingModule({
       imports: [ HttpClientTestingModule ],
@@ -25,6 +27,10 @@ describe('GithubService', () => {
     httpTestingController = TestBed.get(HttpTestingController);
   });
 
+  afterEach(() => {
+    httpTestingController.verify();
+  });
+
   it('should be created', () => {
     expect(githubService).toBeTruthy();
   });
@@ -33,8 +39,23 @@ describe('GithubService', () => {
 
     it('should return an Observable<IssueSearchResult>', () => {
       const service: GithubService = TestBed.get(GithubService);
-      service.getPullRequests('test').subscribe((pullRequests) => {
-      });
+      service.getPullRequests('test').subscribe(
+        data => expect(data).toBeTruthy(),
+        error => fail('Expected valid data, but got an error' + error.message)
+      );
+      const req = httpTestingController.expectOne('/search/issues?q=type:pr+author:test');
+      expect(req.request.method).toEqual('GET');
+      req.flush({});
+    });
+    it('should retrieve a valid search result with multiple results', () => {
+      const service: GithubService = TestBed.get(GithubService);
+      service.getPullRequests('test').subscribe(
+        data => expect(data).toBeTruthy(),
+        error => fail('Expected valid data')
+      );
+      const req = httpTestingController.expectOne('/search/issues?q=type:pr+author:test');
+      expect(req.request.method).toEqual('GET');
+      req.flush(issueSearchMock);
     });
   });
 });
