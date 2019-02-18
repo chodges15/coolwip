@@ -38,4 +38,4 @@ jobs:
           path: tslint-output-junit.xml
           prefix: lint`
       - codecov/upload:
-          file: {{ ./coverage/lcov.info }}
+          file: ./coverage/lcov.info
