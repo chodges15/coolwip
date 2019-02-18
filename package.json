@@ -15,7 +15,7 @@
   "release": {
     "verifyConditions": "condition-circle"
   },
-  "private": true,
+  "private": false,
   "dependencies": {
     "@angular/animations": "^6.1.0",
     "@angular/cdk": "^7.2.0",
