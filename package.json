@@ -1,6 +1,6 @@
 {
   "name": "lean-team-flow-dashboard",
-  "version": "0.0.0",
+  "version": "0.0.0-semantic-release",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -9,7 +9,11 @@
     "debug": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "report-coverage": "codecov"
+    "report-coverage": "codecov",
+    "semantic-release": "semantic-release"
+  },
+  "release": {
+    "verifyConditions": "condition-circle"
   },
   "private": true,
   "dependencies": {
@@ -30,6 +34,7 @@
     "hammerjs": "^2.0.8",
     "nock": "^10.0.6",
     "rxjs": "~6.2.0",
+    "semantic-release-cli": "^4.1.0",
     "zone.js": "~0.8.26"
   },
   "devDependencies": {
@@ -44,6 +49,7 @@
     "@types/node": "^10.12.18",
     "codecov": "^3.2.0",
     "codelyzer": "~4.3.0",
+    "condition-circle": "^2.0.2",
     "jasmine-core": "~2.99.1",
     "jasmine-spec-reporter": "~4.2.1",
     "json-server": "^0.14.2",
@@ -54,8 +60,13 @@
     "karma-jasmine-html-reporter": "^0.2.2",
     "nyc": "^13.3.0",
     "protractor": "~5.4.0",
+    "semantic-release": "^15.13.3",
     "ts-node": "~7.0.0",
     "tslint": "~5.11.0",
     "typescript": "~2.9.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/chodges15/LeanAgileFlowDashboard.git"
   }
 }

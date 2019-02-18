@@ -39,3 +39,7 @@ jobs:
           prefix: lint`
       - codecov/upload:
           file: ./coverage/lcov.info
+      - run:
+        - name: semantic-release
+        - command: npm run semantic-release || true
+
