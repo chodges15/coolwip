@@ -14,13 +14,12 @@ export class PullRequestComponent implements OnInit {
   theMap: Map<number, Interfaces.Issue>;
   users: string[];
 
-  public setUsers(users: string[])
-  {
+  public setUsers(users: string[]) {
     this.users = users;
   }
 
   private parseResults(results: Interfaces.IssueSearchResult) {
-    for(let issue of results.items) {
+    for (const issue of results.items) {
       this.theMap.set(issue.id, issue);
     }
   }
