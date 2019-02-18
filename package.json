@@ -5,9 +5,11 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
-    "test": "ng test",
+    "test": "ng test --code-coverage=true --watch=false --browsers=ChromeHeadless",
+    "debug": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "report-coverage": "codecov"
   },
   "private": true,
   "dependencies": {
@@ -40,6 +42,7 @@
     "@types/jquery": "^3.3.29",
     "@types/json-server": "^0.14.0",
     "@types/node": "^10.12.18",
+    "codecov": "^3.2.0",
     "codelyzer": "~4.3.0",
     "jasmine-core": "~2.99.1",
     "jasmine-spec-reporter": "~4.2.1",
@@ -49,6 +52,7 @@
     "karma-coverage-istanbul-reporter": "^2.0.4",
     "karma-jasmine": "^1.1.2",
     "karma-jasmine-html-reporter": "^0.2.2",
+    "nyc": "^13.3.0",
     "protractor": "~5.4.0",
     "ts-node": "~7.0.0",
     "tslint": "~5.11.0",

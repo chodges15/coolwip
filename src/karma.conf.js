@@ -17,14 +17,14 @@ module.exports = function (config) {
     },
     coverageIstanbulReporter: {
       dir: require('path').join(__dirname, '../coverage'),
-      reports: ['html', 'lcovonly'],
+      reports: ['html', 'lcovonly', 'json'],
       fixWebpackSourcePaths: true
     },
     reporters: ['progress', 'kjhtml'],
     port: 9876,
     colors: true,
     logLevel: config.LOG_INFO,
-    autoWatch: true,
+    autoWatch: false,
     customLaunchers: {
       ChromeDebugging: {
         base: 'Chrome',
@@ -32,6 +32,6 @@ module.exports = function (config) {
       }
     },
     browsers: ['ChromeDebugging'],
-    singleRun: false
+    singleRun: true
   });
 };

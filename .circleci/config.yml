@@ -1,4 +1,6 @@
-version: 2
+version: 2.1
+orbs:
+  codecov: codecov/codecov@1.0.2
 jobs:
   build:
     working_directory: ~/LeanAgileFlowDashboard
@@ -35,3 +37,5 @@ jobs:
       - store_artifacts:
           path: tslint-output-junit.xml
           prefix: lint`
+      - codecov/upload:
+          file: ./lcov.info

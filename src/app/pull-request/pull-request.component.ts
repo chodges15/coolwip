@@ -12,12 +12,20 @@ export class PullRequestComponent implements OnInit {
   issues: Interfaces.Issue[];
   currentSelectedIssue: Interfaces.Issue;
   theMap: Map<number, Interfaces.Issue>;
-  @Input() users: string[];
+  users: string[];
 
-  parseResults(results: Interfaces.IssueSearchResult) {
+  public setUsers(users: string[])
+  {
+    this.users = users;
   }
 
-  sendPullRequestGet() {
+  private parseResults(results: Interfaces.IssueSearchResult) {
+    for(let issue of results.items) {
+      this.theMap.set(issue.id, issue);
+    }
+  }
+
+  private sendPullRequestGet() {
     this.users.forEach(user => {
       this.githubService.getPullRequests(user).subscribe(results => this.parseResults(results));
     });
