@@ -11,7 +11,7 @@ Is your team working across multiple Github repositories in various organization
 
 ## Building 
 
-This project uses yarn. Build with `yarn build` and run the tests with `yarn test`. CircleCI will run these 
+This project uses yarn. Build with `yarn build` and run the tests with `yarn test`.
 
 ## Versioning
 
