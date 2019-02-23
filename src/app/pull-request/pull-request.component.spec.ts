@@ -7,7 +7,6 @@ import * as Interfaces from '../interfaces';
 
 describe('PullRequestComponent', () => {
   let component: PullRequestComponent;
-  let fixture: ComponentFixture<PullRequestComponent>;
   let githubServiceSpy: jasmine.SpyObj<GithubService>;
 
   beforeEach(() => {
@@ -30,7 +29,7 @@ describe('PullRequestComponent', () => {
   });
   it('should not allow an invalid array of users to be set', () => {
     githubServiceSpy.getPullRequests.and.returnValue(MockData.ISSUE_SEARCH);
-    expect(component.setUsersAndFetchPullRequests([""])).toBe(true);
+    expect(component.setUsersAndFetchPullRequests([''])).toBe(true);
     expect(githubServiceSpy.getPullRequests).toHaveBeenCalledTimes(0);
   });
 });

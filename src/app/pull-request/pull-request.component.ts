@@ -14,16 +14,15 @@ export class PullRequestComponent implements OnInit {
   theMap: Map<number, Interfaces.Issue>;
   users: string[];
 
-  public setUsersAndFetchPullRequests(users: string[]) : boolean {
-    if(users)
-    {
+  public setUsersAndFetchPullRequests(users: string[]): boolean {
+    if (users) {
       this.users = users.filter( val => val && val.length > 0);
-      console.log(this.users)
+      console.log(this.users);
       this.users.forEach(user => {
-        console.log(`USER: {${user}}`)
+        console.log(`USER: {${user}}`);
         this.githubService.getPullRequests(user).subscribe(
-          results => { if(results && results.items) {
-            this.parseResults(results)
+          results => { if (results && results.items) {
+            this.parseResults(results);
           }},
           err => console.log(`There was an error fetching pull requests: ${err}`));
       });

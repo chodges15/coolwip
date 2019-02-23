@@ -35,7 +35,7 @@ describe(`TokenInterceptor`, () => {
     localStorage.setItem('token', 'test');
     service.getPullRequests('test').subscribe(
       response => expect(response).toBeTruthy(),
-      err => fail("Test failed")
+      err => fail('Test failed')
     );
     const httpRequest = httpMock.expectOne(
       req => req.method === 'GET' &&

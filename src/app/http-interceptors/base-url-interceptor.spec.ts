@@ -36,7 +36,7 @@ describe(`BaseUrlInterceptor`, () => {
     localStorage.setItem('baseUrl', testUrl);
     service.getPullRequests('test').subscribe(
       response => expect(response).toBeTruthy(),
-      err => fail("Received error")
+      err => fail('Received error')
     );
     const httpRequest = httpMock.expectOne(
       req => req.method === 'GET' &&
