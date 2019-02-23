@@ -6,7 +6,7 @@
     "start": "ng serve",
     "build": "ng build",
     "test": "ng test --code-coverage=true --watch=false --browsers=ChromeHeadless",
-    "debug": "ng test",
+    "debug": "ng test --watch",
     "lint": "ng lint",
     "e2e": "ng e2e",
     "report-coverage": "codecov",
