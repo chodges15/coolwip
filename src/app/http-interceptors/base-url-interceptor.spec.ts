@@ -34,9 +34,10 @@ describe(`BaseUrlInterceptor`, () => {
     const testUrl = 'http://testUrl';
     const testData: Interfaces.IssueSearchResult = MockData.ISSUE_SEARCH;
     localStorage.setItem('baseUrl', testUrl);
-    service.getPullRequests('test').subscribe(response => {
-      expect(response).toBeTruthy();
-    });
+    service.getPullRequests('test').subscribe(
+      response => expect(response).toBeTruthy(),
+      err => fail("Received error")
+    );
     const httpRequest = httpMock.expectOne(
       req => req.method === 'GET' &&
       req.url === `${testUrl}/search/issues?q=type:pr+author:test`);

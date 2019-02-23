@@ -33,9 +33,10 @@ describe(`TokenInterceptor`, () => {
   it('should add an Authorization header', () => {
     const testData: Interfaces.IssueSearchResult = MockData.ISSUE_SEARCH;
     localStorage.setItem('token', 'test');
-    service.getPullRequests('test').subscribe(response => {
-      expect(response).toBeTruthy();
-    });
+    service.getPullRequests('test').subscribe(
+      response => expect(response).toBeTruthy(),
+      err => fail("Test failed")
+    );
     const httpRequest = httpMock.expectOne(
       req => req.method === 'GET' &&
       req.url === '/search/issues?q=type:pr+author:test');

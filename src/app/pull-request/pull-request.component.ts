@@ -14,8 +14,22 @@ export class PullRequestComponent implements OnInit {
   theMap: Map<number, Interfaces.Issue>;
   users: string[];
 
-  public setUsers(users: string[]) {
-    this.users = users;
+  public setUsersAndFetchPullRequests(users: string[]) : boolean {
+    if(users)
+    {
+      this.users = users.filter( val => val && val.length > 0);
+      console.log(this.users)
+      this.users.forEach(user => {
+        console.log(`USER: {${user}}`)
+        this.githubService.getPullRequests(user).subscribe(
+          results => { if(results && results.items) {
+            this.parseResults(results)
+          }},
+          err => console.log(`There was an error fetching pull requests: ${err}`));
+      });
+      return true;
+    }
+    return false;
   }
 
   private parseResults(results: Interfaces.IssueSearchResult) {
@@ -24,18 +38,11 @@ export class PullRequestComponent implements OnInit {
     }
   }
 
-  private sendPullRequestGet() {
-    this.users.forEach(user => {
-      this.githubService.getPullRequests(user).subscribe(results => this.parseResults(results));
-    });
-  }
-
   constructor(private githubService: GithubService) {
     this.theMap = new Map<number, Interfaces.Issue>();
   }
 
   ngOnInit() {
-    this.sendPullRequestGet();
   }
 
 }
