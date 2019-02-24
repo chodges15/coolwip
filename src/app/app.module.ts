@@ -12,13 +12,15 @@ import { MatTableModule } from '@angular/material/table';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenInterceptor } from './http-interceptors/token-interceptor';
 import { BaseUrlInterceptor } from './http-interceptors/base-url-interceptor';
+import { UserAuthComponent } from './user-auth/user-auth.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MainComponent,
     PullRequestComponent,
-    PullRequestTableComponent
+    PullRequestTableComponent,
+    UserAuthComponent
   ],
   imports: [
     BrowserModule,

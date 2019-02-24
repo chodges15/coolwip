@@ -59,3 +59,9 @@ export interface IssueSearchResult {
   incomplete_results: boolean;
   items: Issue[];
 }
+
+export interface SessionLoginInformation {
+  github_api: string;
+  github_token: string;
+  list_of_users: string;
+}

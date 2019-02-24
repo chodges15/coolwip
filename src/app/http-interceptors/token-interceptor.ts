@@ -3,14 +3,13 @@ import {
   HttpEvent, HttpInterceptor, HttpHandler, HttpRequest
 } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { GithubService } from '../github.service';
 
 @Injectable()
 export class TokenInterceptor implements HttpInterceptor {
 
   token: String = '';
 
-  constructor(public github: GithubService) {}
+  constructor() {}
 
   getToken(): String {
     return localStorage.getItem('token');
