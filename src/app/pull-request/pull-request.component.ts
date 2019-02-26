@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { PullRequest, PullRequestState } from '../pull-request';
+import { Component, OnInit, Input } from '@angular/core';
 import { GithubService } from '../github.service';
+import * as Interfaces from '../interfaces';
 
 @Component({
   selector: 'app-pull-request',
@@ -9,21 +9,36 @@ import { GithubService } from '../github.service';
 })
 export class PullRequestComponent implements OnInit {
 
-  pullRequest: PullRequest = { name: 'test-pr',
-                                        id: 35,
-                           author: 'chodges15',
-                  state: PullRequestState.Open,
-                            repository: 'repo',
-                            organization: 'org'};
-  pullRequests: PullRequest[];
+  issues: Interfaces.Issue[];
+  currentSelectedIssue: Interfaces.Issue;
+  theMap: Map<number, Interfaces.Issue>;
+  users: string[];
 
-  getPullRequests(organization: String, users: String[]) {
-    users.forEach(user => {
-      this.githubService.getPullRequests(organization, user);
-    });
+  public setUsersAndFetchPullRequests(users: string[]): boolean {
+    if (users) {
+      this.users = users.filter( val => val && val.length > 0);
+      console.log(this.users);
+      this.users.forEach(user => {
+        console.log(`USER: {${user}}`);
+        this.githubService.getPullRequests(user).subscribe(
+          results => { if (results && results.items) {
+            this.parseResults(results);
+          }},
+          err => console.log(`There was an error fetching pull requests: ${err}`));
+      });
+      return true;
+    }
+    return false;
+  }
+
+  private parseResults(results: Interfaces.IssueSearchResult) {
+    for (const issue of results.items) {
+      this.theMap.set(issue.id, issue);
+    }
   }
 
   constructor(private githubService: GithubService) {
+    this.theMap = new Map<number, Interfaces.Issue>();
   }
 
   ngOnInit() {

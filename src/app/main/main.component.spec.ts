@@ -1,6 +1,7 @@
 import { LayoutModule } from '@angular/cdk/layout';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { Component } from '@angular/core';
 
@@ -14,6 +15,7 @@ import {
 } from '@angular/material';
 
 import { MainComponent } from './main.component';
+import { APP_BASE_HREF } from '../../../node_modules/@angular/common';
 
 // Mocks
 @Component({
@@ -39,8 +41,10 @@ describe('MainComponent', () => {
         MatGridListModule,
         MatIconModule,
         MatMenuModule,
-        MatToolbarModule
-      ]
+        MatToolbarModule,
+        RouterTestingModule
+      ],
+      providers: [{ provide: APP_BASE_HREF, useValue: '/'}]
     }).compileComponents();
   }));
 

@@ -1,18 +1,19 @@
-import { Injectable } from '@angular/core';
-import { PullRequest } from './pull-request';
-import { MOCK_PULL_REQUESTS } from './mock-pull-requests';
-import { Observable, of } from 'rxjs';
-import * as Octokit from '@octokit/rest';
+import { Injectable, Inject, OnInit } from '@angular/core';
+import { Observable, of, from } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import * as Interfaces from './interfaces';
 
 @Injectable({
   providedIn: 'root'
 })
+
+@Injectable()
 export class GithubService {
 
-  constructor() { }
+  constructor(private http: HttpClient) {
+  }
 
-  getPullRequests(organization: String, user: String): Observable<PullRequest[]> {
-    console.log('Fetching pull requests');
-    return of(MOCK_PULL_REQUESTS);
+  public getPullRequests(username: String): Observable<Interfaces.IssueSearchResult> {
+    return this.http.get<Interfaces.IssueSearchResult>(`/search/issues?q=type:pr+author:${username}`);
   }
 }

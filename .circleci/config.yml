@@ -1,7 +1,9 @@
-version: 2
+version: 2.1
+orbs:
+  codecov: codecov/codecov@1.0.2
 jobs:
   build:
-    working_directory: ~/LeanAgileFlowDashboard
+    working_directory: ~/coolwip
     docker:
       - image: circleci/node:9.5-browsers
     steps:
@@ -21,13 +23,23 @@ jobs:
           command: yarn ng build --prod --aot --no-progress
       - run:
           name: angular-test
-          command: yarn test --watch=false --progress=false
+          command: yarn test --watch=false --code-coverage --progress=false
       - store_artifacts:
           path: test-results.xml
           prefix: tests
+      - store_artifacts:
+          path: ./coverage
+      - store_test_results:
+          path: ./coverage
       - run:
           name: angular-lint
           command: yarn lint --format junit | sed -n '3p' > tslint-output-junit.xml
       - store_artifacts:
           path: tslint-output-junit.xml
           prefix: lint`
+      - codecov/upload:
+          file: ./coverage/lcov.info
+      - run:
+          name: semantic-release
+          command: npm run semantic-release || true
+

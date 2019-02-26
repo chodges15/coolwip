@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {animate, state, style, transition, trigger} from '@angular/animations';
-import { PullRequest } from '../pull-request';
+import * as Interfaces from '../interfaces';
 
 @Component({
   selector: 'app-pull-request-table',
@@ -17,7 +17,7 @@ import { PullRequest } from '../pull-request';
 export class PullRequestTableComponent implements OnInit {
   dataSource = ['temp'];
   columnsToDisplay = ['pull request', 'state', 'organization', 'name'];
-  expandedElement: PullRequest | null;
+  expandedElement: Interfaces.PullRequest | null;
 
   constructor() { }
 
