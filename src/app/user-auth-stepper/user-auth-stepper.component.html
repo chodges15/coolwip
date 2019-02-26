@@ -1,0 +1,53 @@
+<mat-card class="user-settings-card">
+    <mat-card-header>
+      <mat-card-title>Where to?</mat-card-title>
+      <mat-card-subtitle>Let's get connected to Github and your team.</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <mat-horizontal-stepper linear=true isEditable=true #stepper>
+        <mat-step [stepControl]="githubApiGroup">
+          <form [formGroup]="githubApiGroup">
+            <ng-template matStepLabel>Github API</ng-template>
+            <mat-form-field>
+              <input matInput placeholder="Github or GHE REST API" formControlName="firstCtrl" required>
+            </mat-form-field>
+            <div>
+              <button mat-button matStepperNext>Next</button>
+            </div>
+          </form>
+        </mat-step>
+        <mat-step [stepControl]="githubTokenGroup">
+          <form [formGroup]="githubTokenGroup">
+            <ng-template matStepLabel>Github Access Token</ng-template>
+            <mat-form-field>
+              <input matInput placeholder="Personal access token" formControlName="secondCtrl" required>
+            </mat-form-field>
+            <div>
+              <button mat-button matStepperPrevious>Back</button>
+              <button mat-button matStepperNext>Next</button>
+            </div>
+          </form>
+        </mat-step>
+        <mat-step [stepControl]="usersGroup">
+          <form [formGroup]="usersGroup">
+            <ng-template matStepLabel>Select users</ng-template>
+            <mat-form-field>
+              <input matInput placeholder="User1, User2, ..." formControlName="thirdCtrl" required>
+            </mat-form-field>
+            <div>
+              <button mat-button matStepperPrevious>Back</button>
+              <button mat-button matStepperNext>Next</button>
+            </div>
+          </form>
+        </mat-step>
+        <mat-step>
+            <ng-template matStepLabel>Verify</ng-template>
+            You are now done.
+            <div>
+              <button mat-button matStepperPrevious>Back</button>
+              <button mat-button (click)="stepper.reset()">Reset</button>
+            </div>
+          </mat-step>
+      </mat-horizontal-stepper>
+    </mat-card-content>
+  </mat-card>

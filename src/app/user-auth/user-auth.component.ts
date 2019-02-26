@@ -1,7 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { SessionLoginInformation } from '../interfaces';
 import { UserSettingsService } from '../user-settings.service';
-import { MatStepperModule } from '@angular/material/stepper';
 
 @Component({
   selector: 'app-user-auth',
