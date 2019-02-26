@@ -4,6 +4,7 @@ orbs:
 jobs:
   build:
     working_directory: ~/coolwip
+    context: Connections
     docker:
       - image: circleci/node:9.5-browsers
     steps:
@@ -38,10 +39,8 @@ jobs:
           path: tslint-output-junit.xml
           prefix: lint
       - codecov/upload:
-          context: Connections
           file: ./coverage/lcov.info
       - run:
           name: semantic-release
-          context: Connections
           command: npm run semantic-release
 
