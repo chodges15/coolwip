@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -13,6 +14,16 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenInterceptor } from './http-interceptors/token-interceptor';
 import { BaseUrlInterceptor } from './http-interceptors/base-url-interceptor';
 import { UserAuthComponent } from './user-auth/user-auth.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+
+const appRoutes: Routes = [
+  { path: 'dashboard', component: PullRequestTableComponent},
+  { path: 'settings', component: UserAuthComponent},
+  { path: '',
+    redirectTo: '/settings',
+    pathMatch: 'full'},
+  { path: '**', component: PageNotFoundComponent}
+];
 
 @NgModule({
   declarations: [
@@ -20,7 +31,8 @@ import { UserAuthComponent } from './user-auth/user-auth.component';
     MainComponent,
     PullRequestComponent,
     PullRequestTableComponent,
-    UserAuthComponent
+    UserAuthComponent,
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,
@@ -33,7 +45,8 @@ import { UserAuthComponent } from './user-auth/user-auth.component';
     MatToolbarModule,
     LayoutModule,
     MatTableModule,
-    HttpClientModule
+    HttpClientModule,
+    RouterModule.forRoot(appRoutes)
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },

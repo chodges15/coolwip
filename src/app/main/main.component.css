@@ -1,27 +1,5 @@
-.grid-container {
-  margin: 0px;
-}
-
 .mat-toolbar {
   background: black;
   color: white;
   font-family: 'Source Sans Pro', sans-serif;
-}
-
-.dashboard-card {
-  position: absolute;
-  top: 15px;
-  left: 15px;
-  right: 15px;
-  bottom: 15px;
-}
-
-.more-button {
-  position: absolute;
-  top: 5px;
-  right: 10px;
-}
-
-.dashboard-card-content {
-  text-align: center;
 }

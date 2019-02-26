@@ -8,6 +8,7 @@
     "test": "ng test --code-coverage=true --watch=false --browsers=ChromeHeadless",
     "debug": "ng test --watch",
     "lint": "ng lint",
+    "lint:fix": "ng lint --fix",
     "e2e": "ng e2e",
     "report-coverage": "codecov",
     "semantic-release": "semantic-release"
