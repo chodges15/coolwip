@@ -3,6 +3,12 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { UserAuthComponent } from './user-auth.component';
 import { UserSettingsService } from '../user-settings.service';
 import { SessionLoginInformation } from '../interfaces';
+import { UserAuthStepperComponent } from '../user-auth-stepper/user-auth-stepper.component';
+import { ReactiveFormsModule} from '@angular/forms';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule, MatCardModule } from '@angular/material';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatStepperModule } from '@angular/material/stepper';
 
 
 describe('UserAuthComponent', () => {
@@ -14,7 +20,13 @@ describe('UserAuthComponent', () => {
   beforeEach(async(() => {
     const spy = jasmine.createSpyObj('UserSettingsService', ['setUserSettings']);
     TestBed.configureTestingModule({
-      declarations: [ UserAuthComponent ],
+      declarations: [ UserAuthComponent, UserAuthStepperComponent],
+      imports: [ MatStepperModule,
+                 ReactiveFormsModule,
+                 MatFormFieldModule,
+                 MatInputModule,
+                 MatCardModule,
+                 BrowserAnimationsModule ],
       providers: [ {provide: UserSettingsService, useValue: spy} ]
     })
     .compileComponents();
