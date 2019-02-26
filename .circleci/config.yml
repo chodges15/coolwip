@@ -36,10 +36,12 @@ jobs:
           command: yarn lint --format junit | sed -n '3p' > tslint-output-junit.xml
       - store_artifacts:
           path: tslint-output-junit.xml
-          prefix: lint`
+          prefix: lint
       - codecov/upload:
+          context: Connections
           file: ./coverage/lcov.info
       - run:
           name: semantic-release
-          command: npm run semantic-release || true
+          context: Connections
+          command: npm run semantic-release
 
