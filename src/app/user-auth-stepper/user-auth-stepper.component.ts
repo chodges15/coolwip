@@ -1,6 +1,7 @@
-import { Component, OnInit, Output } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { SessionLoginInformation } from '../interfaces';
+import { UserSettings } from '../user-settings';
+
 
 @Component({
   selector: 'app-user-auth-stepper',
@@ -8,20 +9,23 @@ import { SessionLoginInformation } from '../interfaces';
   styleUrls: ['./user-auth-stepper.component.css']
 })
 export class UserAuthStepperComponent implements OnInit {
-  isLinear = true;
-  isEditable = true;
   githubApiGroup: FormGroup;
   githubTokenGroup: FormGroup;
   usersGroup: FormGroup;
   githubApiDefault = 'https://api.github.com';
 
-  @Output() userSettings: SessionLoginInformation;
-  constructor(private _formBuilder: FormBuilder) { }
+  @Output()
+  userSettingsEvent: EventEmitter<UserSettings> = new EventEmitter();
+
+  private userSettings: UserSettings;
+
+  constructor(private _formBuilder: FormBuilder) {
+  }
 
   ngOnInit() {
     // TODO: add better validators
     this.githubApiGroup = this._formBuilder.group({
-      firstCtrl: ['https://api.github.com', Validators.required]
+      firstCtrl: [this.githubApiDefault, Validators.required]
     });
     this.githubTokenGroup = this._formBuilder.group({
       secondCtrl: ['', Validators.required]
@@ -29,6 +33,26 @@ export class UserAuthStepperComponent implements OnInit {
     this.usersGroup = this._formBuilder.group({
       thirdCtrl: ['', Validators.required]
     });
+
+    this.userSettings = new UserSettings();
+    this.onApiChange(this.githubApiDefault);
+  }
+
+  onApiChange(api: string) {
+    this.userSettings.setGithubApi(api);
+  }
+
+  onTokenChange(token: string) {
+    this.userSettings.setGithubToken(token);
+  }
+
+  onUserChange(users: string) {
+    this.userSettings.setListOfUsers(users);
+  }
+
+  onVerify() {
+    console.log(JSON.stringify(this.userSettings));
+    this.userSettingsEvent.emit(this.userSettings);
   }
 
 }

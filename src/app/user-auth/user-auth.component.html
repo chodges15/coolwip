@@ -1,1 +1,5 @@
-<app-user-auth-stepper></app-user-auth-stepper>
+<div>
+    <app-user-auth-stepper 
+       (userSettingsEvent)="processSettings($event)">
+    </app-user-auth-stepper>
+</div>

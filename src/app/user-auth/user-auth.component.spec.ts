@@ -9,16 +9,19 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule, MatCardModule } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatStepperModule } from '@angular/material/stepper';
+import { GithubService } from '../github.service';
 
 
 describe('UserAuthComponent', () => {
   let component: UserAuthComponent;
   let fixture: ComponentFixture<UserAuthComponent>;
   let spySettings: jasmine.SpyObj<UserSettingsService>;
+  let spyGithub: jasmine.SpyObj<GithubService>;
   const dummySettings: SessionLoginInformation = {github_api: 'github.company.com', github_token: '123', list_of_users: 'user1, user2'};
 
   beforeEach(async(() => {
-    const spy = jasmine.createSpyObj('UserSettingsService', ['setUserSettings']);
+    const mockSettingsProvider = jasmine.createSpyObj('UserSettingsService', ['setUserSettings']);
+    const mockGithubProvider = jasmine.createSpyObj('GithubService', ['verifyConnection']);
     TestBed.configureTestingModule({
       declarations: [ UserAuthComponent, UserAuthStepperComponent],
       imports: [ MatStepperModule,
@@ -27,10 +30,12 @@ describe('UserAuthComponent', () => {
                  MatInputModule,
                  MatCardModule,
                  BrowserAnimationsModule ],
-      providers: [ {provide: UserSettingsService, useValue: spy} ]
+      providers: [ {provide: UserSettingsService, useValue: mockSettingsProvider},
+                   {provide: GithubService, useValue: mockGithubProvider} ]
     })
     .compileComponents();
     spySettings = TestBed.get(UserSettingsService);
+    spyGithub = TestBed.get(GithubService);
   }));
 
   beforeEach(() => {
@@ -43,7 +48,7 @@ describe('UserAuthComponent', () => {
     expect(component).toBeTruthy();
   });
   it('should handle passing the settings to the UserSettingsService', () => {
-    component.processInput(dummySettings);
+    component.processSettings(dummySettings);
     expect(spySettings.setUserSettings).toHaveBeenCalledWith(dummySettings);
   });
 });

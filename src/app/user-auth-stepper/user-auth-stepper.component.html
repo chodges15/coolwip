@@ -9,7 +9,12 @@
           <form [formGroup]="githubApiGroup">
             <ng-template matStepLabel>Github API</ng-template>
             <mat-form-field>
-              <input matInput placeholder="Github or GHE REST API" formControlName="firstCtrl" required>
+              <input matInput 
+                     placeholder="Github or GHE REST API" 
+                     formControlName="firstCtrl" 
+                     required
+                     (input)="onApiChange(api.value)" 
+                     #api>
             </mat-form-field>
             <div>
               <button mat-button matStepperNext>Next</button>
@@ -20,7 +25,12 @@
           <form [formGroup]="githubTokenGroup">
             <ng-template matStepLabel>Github Access Token</ng-template>
             <mat-form-field>
-              <input matInput placeholder="Personal access token" formControlName="secondCtrl" required>
+              <input matInput 
+                     placeholder="Personal access token" 
+                     formControlName="secondCtrl" 
+                     required
+                     (input)="onTokenChange(token.value)" 
+                     #token>
             </mat-form-field>
             <div>
               <button mat-button matStepperPrevious>Back</button>
@@ -32,7 +42,12 @@
           <form [formGroup]="usersGroup">
             <ng-template matStepLabel>Select users</ng-template>
             <mat-form-field>
-              <input matInput placeholder="User1, User2, ..." formControlName="thirdCtrl" required>
+              <input matInput 
+                     placeholder="User1, User2, ..." 
+                     formControlName="thirdCtrl" 
+                     required
+                     (input)="onUserChange(users.value)" 
+                     #users>
             </mat-form-field>
             <div>
               <button mat-button matStepperPrevious>Back</button>
@@ -45,6 +60,7 @@
             You are now done.
             <div>
               <button mat-button matStepperPrevious>Back</button>
+              <button mat-button (click)="onVerify()">Submit</button>
               <button mat-button (click)="stepper.reset()">Reset</button>
             </div>
           </mat-step>
