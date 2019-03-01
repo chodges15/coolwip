@@ -2,6 +2,7 @@ import { Injectable, Inject, OnInit } from '@angular/core';
 import { Observable, of, from } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import * as Interfaces from './interfaces';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
