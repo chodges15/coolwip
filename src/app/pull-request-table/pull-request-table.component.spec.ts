@@ -2,6 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import {MatTableModule} from '@angular/material/table';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
+import { UserSettingsService } from '../user-settings.service';
 import { PullRequestTableComponent } from './pull-request-table.component';
 
 xdescribe('PullRequestTableComponent', () => {
@@ -12,7 +13,8 @@ xdescribe('PullRequestTableComponent', () => {
     TestBed.configureTestingModule({
       declarations: [ PullRequestTableComponent ],
       imports: [MatTableModule,
-                BrowserAnimationsModule]
+                BrowserAnimationsModule],
+      providers: [UserSettingsService]
     })
     .compileComponents();
   }));
