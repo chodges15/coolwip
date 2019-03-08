@@ -39,15 +39,15 @@ export class UserAuthStepperComponent implements OnInit {
   }
 
   onApiChange(api: string) {
-    this.userSettings.setGithubApi(api);
+    this.userSettings.githubApi = api;
   }
 
   onTokenChange(token: string) {
-    this.userSettings.setGithubToken(token);
+    this.userSettings.githubToken = token;
   }
 
   onUserChange(users: string) {
-    this.userSettings.setListOfUsers(users);
+    this.userSettings.usersList = users;
   }
 
   onVerify() {

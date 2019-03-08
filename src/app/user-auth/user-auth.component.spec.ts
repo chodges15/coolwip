@@ -10,6 +10,7 @@ import { MatInputModule, MatCardModule } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatStepperModule } from '@angular/material/stepper';
 import { GithubService } from '../github.service';
+import { UserSettings } from '../user-settings';
 
 
 describe('UserAuthComponent', () => {
@@ -17,7 +18,7 @@ describe('UserAuthComponent', () => {
   let fixture: ComponentFixture<UserAuthComponent>;
   let spySettings: jasmine.SpyObj<UserSettingsService>;
   let spyGithub: jasmine.SpyObj<GithubService>;
-  const dummySettings: SessionLoginInformation = {github_api: 'github.company.com', github_token: '123', list_of_users: 'user1, user2'};
+  const dummySettings: UserSettings = new UserSettings('github.company.com', '123', 'user1, user2');
 
   beforeEach(async(() => {
     const mockSettingsProvider = jasmine.createSpyObj('UserSettingsService', ['setUserSettings']);

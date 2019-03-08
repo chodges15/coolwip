@@ -22,15 +22,15 @@ describe('PullRequestComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
-  it('should allow a valid array of users to be set', () => {
-    githubServiceSpy.getPullRequests.and.returnValue(of(MockData.ISSUE_SEARCH));
-    expect(component.setUsersAndFetchPullRequests(['user1', 'user2'])).toBeTruthy();
-    expect(githubServiceSpy.getPullRequests).toHaveBeenCalledTimes(2);
-  });
-  it('should not allow an invalid array of users to be set', () => {
-    githubServiceSpy.getPullRequests.and.returnValue(MockData.ISSUE_SEARCH);
-    expect(component.setUsersAndFetchPullRequests([''])).toBe(true);
-    expect(githubServiceSpy.getPullRequests).toHaveBeenCalledTimes(0);
-  });
+  // it('should allow a valid array of users to be set', () => {
+  //   githubServiceSpy.getPullRequests.and.returnValue(of(MockData.ISSUE_SEARCH));
+  //   expect(component.setUsersAndFetchPullRequests(['user1', 'user2'])).toBeTruthy();
+  //   expect(githubServiceSpy.getPullRequests).toHaveBeenCalledTimes(2);
+  // });
+  // it('should not allow an invalid array of users to be set', () => {
+  //   githubServiceSpy.getPullRequests.and.returnValue(MockData.ISSUE_SEARCH);
+  //   expect(component.setUsersAndFetchPullRequests([''])).toBe(true);
+  //   expect(githubServiceSpy.getPullRequests).toHaveBeenCalledTimes(0);
+  // });
 });
 

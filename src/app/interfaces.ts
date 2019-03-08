@@ -61,7 +61,7 @@ export interface IssueSearchResult {
 }
 
 export interface SessionLoginInformation {
-  github_api: string;
-  github_token: string;
-  list_of_users: string;
+  githubApi: string;
+  githubToken: string;
+  usersList: string;
 }
