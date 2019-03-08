@@ -4,7 +4,7 @@ export class UserSettings implements SessionLoginInformation {
     private _githubToken: string;
     private _usersList: string;
 
-    constructor(githubApi?: string, githubToken?: string, usersList?:string) {
+    constructor(githubApi?: string, githubToken?: string, usersList?: string) {
         this._githubApi = githubApi;
         this._githubToken = githubToken;
         this._usersList = usersList;
