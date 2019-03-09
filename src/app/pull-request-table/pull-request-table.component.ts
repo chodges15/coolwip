@@ -51,8 +51,8 @@ export class PullRequestTableComponent implements OnInit {
     );
   }
 
-
   ngOnInit() {
+    this.fetchPullRequests();
   }
 
 }
