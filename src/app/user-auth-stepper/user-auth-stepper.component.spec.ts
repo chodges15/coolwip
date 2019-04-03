@@ -7,6 +7,7 @@ import { MatInputModule, MatCardModule } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
+import { UserSettings } from '../user-settings';
 
 describe('UserAuthStepperComponent', () => {
   let component: UserAuthStepperComponent;
@@ -35,26 +36,17 @@ describe('UserAuthStepperComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  fit('should handle settings input', () => {
-    let api: string;
+  it('should handle settings input', () => {
+    let actualSettings: UserSettings;
+    const expectedSettings = new UserSettings('dummyApi', 'dummyToken', 'dummyUsers');
     component.onApiChange('dummyApi');
-    component.userSettingsEvent.subscribe((value) => api = value);
+    component.onTokenChange('dummyToken');
+    component.onUserChange('dummyUsers');
+    component.userSettingsEvent.subscribe((value) => actualSettings = value);
+    component.onVerify();
 
-    const stepHeaders = fixture.debugElement.queryAll(By.css('.mat-horizontal-stepper-header'));
-
-    // input the API
-    const apiInputEl = fixture.debugElement.query(By.css('mat-input-element')).nativeElement;
-
-    // select the first step
-    const stepHeaderEl = stepHeaders[3].nativeElement;
-    stepHeaderEl.click();
-    fixture.detectChanges();
-
-    // click submit
-    const submitButton = fixture.debugElement.query(By.css('mat-raised-button')).nativeElement;
-    submitButton.click();
-    fixture.detectChanges();
-
-    expect(api).toBe('dummyApi');
+    expect(actualSettings.githubApi).toBe(expectedSettings.githubApi);
+    expect(actualSettings.githubToken).toBe(expectedSettings.githubToken);
+    expect(actualSettings.usersList).toBe(expectedSettings.usersList);
   });
 });

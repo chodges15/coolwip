@@ -15,11 +15,11 @@ export class UserSettings implements SessionLoginInformation {
     }
 
     set githubToken(token: string) {
-        this.githubToken = token;
+        this._githubToken = token;
     }
 
     set usersList(users: string) {
-        this.usersList = users;
+        this._usersList = users;
     }
 
     get githubApi(): string {
@@ -27,14 +27,14 @@ export class UserSettings implements SessionLoginInformation {
     }
 
     get githubToken(): string {
-        return this.githubToken;
+        return this._githubToken;
     }
 
     get usersList(): string {
-        return this.usersList;
+        return this._usersList;
     }
 
     getTokenizedListOfUsers(): string[] {
-        return [this.usersList];
+        return [this._usersList];
     }
 }
