@@ -1,18 +1,18 @@
 import { Injectable } from '@angular/core';
-import { SessionLoginInformation } from './interfaces';
+import { UserSettings } from './user-settings';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserSettingsService {
-  private settings: SessionLoginInformation;
+  private settings: UserSettings;
   constructor() {
-    this.settings = { github_api: undefined, github_token: undefined, list_of_users: undefined};
+    this.settings = new UserSettings();
   }
-  setUserSettings(settings: SessionLoginInformation) {
+  setUserSettings(settings: UserSettings) {
     this.settings = settings;
   }
-  getUserSettings(): SessionLoginInformation {
+  getUserSettings(): UserSettings {
     return this.settings;
   }
 }

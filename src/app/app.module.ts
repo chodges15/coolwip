@@ -26,6 +26,8 @@ import { BaseUrlInterceptor } from './http-interceptors/base-url-interceptor';
 import { UserAuthComponent } from './user-auth/user-auth.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { UserAuthStepperComponent } from './user-auth-stepper/user-auth-stepper.component';
+import { GithubService } from './github.service';
+import { UserSettingsService } from './user-settings.service';
 
 const appRoutes: Routes = [
   { path: 'dashboard', component: PullRequestTableComponent},
@@ -67,6 +69,8 @@ const appRoutes: Routes = [
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: BaseUrlInterceptor, multi: true },
+    GithubService,
+    UserSettingsService
   ],
   bootstrap: [AppComponent]
 })

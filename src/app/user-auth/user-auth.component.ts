@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { SessionLoginInformation } from '../interfaces';
 import { UserSettingsService } from '../user-settings.service';
 import { GithubService } from '../github.service';
+import { UserSettings } from '../user-settings';
 
 @Component({
   selector: 'app-user-auth',
@@ -10,7 +10,7 @@ import { GithubService } from '../github.service';
 })
 export class UserAuthComponent implements OnInit {
 
-  @Input() public sessionInfo: SessionLoginInformation;
+  @Input() public sessionInfo: UserSettings;
 
   constructor(private settingsService: UserSettingsService,
               private githubService: GithubService) { }
@@ -18,7 +18,7 @@ export class UserAuthComponent implements OnInit {
   ngOnInit() {
   }
 
-  processSettings(settings: SessionLoginInformation) {
+  processSettings(settings: UserSettings) {
     this.settingsService.setUserSettings(settings);
   }
 

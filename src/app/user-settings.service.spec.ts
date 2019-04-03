@@ -2,15 +2,12 @@ import { TestBed } from '@angular/core/testing';
 
 import { UserSettingsService } from './user-settings.service';
 import { SessionLoginInformation } from './interfaces';
+import { UserSettings } from './user-settings';
 
 describe('UserSettingsService', () => {
   let service: UserSettingsService;
 
-  const testSettings: SessionLoginInformation = {
-    github_api: 'test.github.com',
-    github_token: 'abcd',
-    list_of_users: 'bob, charlie'
-  };
+  const testSettings: UserSettings = new UserSettings('test.github.com', 'abcd', 'bob, charlie');
   beforeEach(() => {
     TestBed.configureTestingModule({});
     service = TestBed.get(UserSettingsService);

@@ -3,3 +3,7 @@
   color: white;
   font-family: 'Source Sans Pro', sans-serif;
 }
+
+.mat-toolbar-single-row {
+  height: 48px;
+}

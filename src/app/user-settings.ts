@@ -1,36 +1,40 @@
 import { SessionLoginInformation } from './interfaces';
 export class UserSettings implements SessionLoginInformation {
-    public github_api: string;
-    public github_token: string;
-    public list_of_users: string;
+    private _githubApi: string;
+    private _githubToken: string;
+    private _usersList: string;
 
-    constructor() {}
-
-    setGithubApi(api: string) {
-        this.github_api = api;
+    constructor(githubApi?: string, githubToken?: string, usersList?: string) {
+        this._githubApi = githubApi;
+        this._githubToken = githubToken;
+        this._usersList = usersList;
     }
 
-    setGithubToken(token: string) {
-        this.github_token = token;
+    set githubApi(api: string) {
+        this._githubApi = api;
     }
 
-    setListOfUsers(users: string) {
-        this.list_of_users = users;
+    set githubToken(token: string) {
+        this._githubToken = token;
     }
 
-    getGithubApi(): string {
-        return this.github_api;
+    set usersList(users: string) {
+        this._usersList = users;
     }
 
-    getGithubToken(): string {
-        return this.github_token;
+    get githubApi(): string {
+        return this._githubApi;
     }
 
-    getListOfUsers(): string {
-        return this.list_of_users;
+    get githubToken(): string {
+        return this._githubToken;
+    }
+
+    get usersList(): string {
+        return this._usersList;
     }
 
     getTokenizedListOfUsers(): string[] {
-        return [this.list_of_users];
+        return [this._usersList];
     }
 }
