@@ -8,12 +8,15 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { UserSettings } from '../user-settings';
+import { UserSettingsService } from '../user-settings.service';
 
 describe('UserAuthStepperComponent', () => {
   let component: UserAuthStepperComponent;
   let fixture: ComponentFixture<UserAuthStepperComponent>;
+  let spySettings: jasmine.SpyObj<UserSettingsService>;
 
   beforeEach(async(() => {
+    const mockSettingsProvider = jasmine.createSpyObj('UserSettingsService', ['setUserSettings']);
     TestBed.configureTestingModule({
       imports: [ MatStepperModule,
                  ReactiveFormsModule,
@@ -21,7 +24,8 @@ describe('UserAuthStepperComponent', () => {
                  MatInputModule,
                  MatCardModule,
                  BrowserAnimationsModule ],
-      declarations: [ UserAuthStepperComponent ]
+      declarations: [ UserAuthStepperComponent ],
+      providers: [ {provide: UserSettingsService, useValue: mockSettingsProvider} ]
     })
     .compileComponents();
   }));
@@ -29,6 +33,7 @@ describe('UserAuthStepperComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(UserAuthStepperComponent);
     component = fixture.componentInstance;
+    spySettings = TestBed.get(UserSettingsService);
     fixture.detectChanges();
   });
 
@@ -42,11 +47,8 @@ describe('UserAuthStepperComponent', () => {
     component.onApiChange('dummyApi');
     component.onTokenChange('dummyToken');
     component.onUserChange('dummyUsers');
-    component.userSettingsEvent.subscribe((value) => actualSettings = value);
-    component.onVerify();
 
-    expect(actualSettings.githubApi).toBe(expectedSettings.githubApi);
-    expect(actualSettings.githubToken).toBe(expectedSettings.githubToken);
-    expect(actualSettings.usersList).toBe(expectedSettings.usersList);
+    component.onVerify();
+    expect(spySettings.setUserSettings).toHaveBeenCalledWith(expectedSettings);
   });
 });

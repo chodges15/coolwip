@@ -18,8 +18,12 @@ export class UserAuthComponent implements OnInit {
   ngOnInit() {
   }
 
-  processSettings(settings: UserSettings) {
-    this.settingsService.setUserSettings(settings);
+  processSettings() {
+    const userList = this.settingsService.getUserSettings().usersList;
+    const users: string[] = userList.split(',');
+    for(let user in users) {
+      this.githubService.getPullRequests(user);
+    }
   }
 
 }

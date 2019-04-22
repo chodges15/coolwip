@@ -1,6 +1,7 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UserSettings } from '../user-settings';
+import { UserSettingsService } from '../user-settings.service';
 
 
 @Component({
@@ -19,7 +20,7 @@ export class UserAuthStepperComponent implements OnInit {
 
   private userSettings: UserSettings;
 
-  constructor(private _formBuilder: FormBuilder) {
+  constructor(private _formBuilder: FormBuilder, private usService: UserSettingsService) {
   }
 
   ngOnInit() {
@@ -52,7 +53,7 @@ export class UserAuthStepperComponent implements OnInit {
 
   onVerify() {
     console.log(JSON.stringify(this.userSettings));
-    this.userSettingsEvent.emit(this.userSettings);
+    this.usService.setUserSettings(this.userSettings);
   }
 
 }
