@@ -6,7 +6,7 @@ import { UserSettings } from './user-settings';
 })
 export class UserSettingsService {
   private settings: UserSettings;
-  constructor(private authService: UserAuth) {
+  constructor() {
     this.settings = new UserSettings();
   }
   setUserSettings(settings: UserSettings) {

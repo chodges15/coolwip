@@ -18,11 +18,12 @@ describe('UserAuthComponent', () => {
   let fixture: ComponentFixture<UserAuthComponent>;
   let spySettings: jasmine.SpyObj<UserSettingsService>;
   let spyGithub: jasmine.SpyObj<GithubService>;
-  const dummySettings: UserSettings = new UserSettings('github.company.com', '123', 'user1, user2');
+  const dummyUsers = ['user1', 'user2'];
+  const dummySettings: UserSettings = new UserSettings('github.company.com', '123', dummyUsers.toString());
 
   beforeEach(async(() => {
-    const mockSettingsProvider = jasmine.createSpyObj('UserSettingsService', ['setUserSettings']);
-    const mockGithubProvider = jasmine.createSpyObj('GithubService', ['verifyConnection']);
+    const mockSettingsProvider = jasmine.createSpyObj('UserSettingsService', ['setUserSettings', 'getUserSettings']);
+    const mockGithubProvider = jasmine.createSpyObj('GithubService', ['verifyConnection', 'getPullRequests']);
     TestBed.configureTestingModule({
       declarations: [ UserAuthComponent, UserAuthStepperComponent],
       imports: [ MatStepperModule,
@@ -35,6 +36,7 @@ describe('UserAuthComponent', () => {
                    {provide: GithubService, useValue: mockGithubProvider} ]
     })
     .compileComponents();
+    mockSettingsProvider.getUserSettings.and.returnValue(dummySettings);
     spySettings = TestBed.get(UserSettingsService);
     spyGithub = TestBed.get(GithubService);
   }));
@@ -49,7 +51,9 @@ describe('UserAuthComponent', () => {
     expect(component).toBeTruthy();
   });
   it('should handle passing the settings to the UserSettingsService', () => {
-    component.processSettings(dummySettings);
-    expect(spySettings.setUserSettings).toHaveBeenCalledWith(dummySettings);
+    component.processSettings();
+    for (const user of dummyUsers) {
+      expect(spyGithub.getPullRequests).toHaveBeenCalledWith(user);
+    }
   });
 });

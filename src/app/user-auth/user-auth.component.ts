@@ -21,7 +21,7 @@ export class UserAuthComponent implements OnInit {
   processSettings() {
     const userList = this.settingsService.getUserSettings().usersList;
     const users: string[] = userList.split(',');
-    for(let user in users) {
+    for (const user of users) {
       this.githubService.getPullRequests(user);
     }
   }
