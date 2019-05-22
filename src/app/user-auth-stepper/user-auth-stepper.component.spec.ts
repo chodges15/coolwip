@@ -42,7 +42,6 @@ describe('UserAuthStepperComponent', () => {
   });
 
   it('should handle settings input', () => {
-    let actualSettings: UserSettings;
     const expectedSettings = new UserSettings('dummyApi', 'dummyToken', 'dummyUsers');
     component.onApiChange('dummyApi');
     component.onTokenChange('dummyToken');
