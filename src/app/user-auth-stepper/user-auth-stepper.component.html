@@ -60,7 +60,7 @@
             You are now done.
             <div>
               <button mat-button matStepperPrevious>Back</button>
-              <button mat-raised-button routerLink="/dashboard">Submit</button>
+              <button mat-raised-button routerLink="/dashboard" (click)="onVerify()">Submit</button>
               <button mat-button (click)="stepper.reset()">Reset</button>
             </div>
           </mat-step>
