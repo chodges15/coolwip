@@ -3,16 +3,18 @@ import {
   HttpEvent, HttpInterceptor, HttpHandler, HttpRequest
 } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { UserSettingsService } from '../user-settings.service';
 
 @Injectable()
 export class TokenInterceptor implements HttpInterceptor {
 
   token: String = '';
 
-  constructor() {}
+  constructor(private settingsService: UserSettingsService) {
+  }
 
-  getToken(): String {
-    return localStorage.getItem('token');
+  getToken(): string {
+    return this.settingsService.getUserSettings().githubToken;
   }
 
   intercept(req: HttpRequest<any>, next: HttpHandler):
